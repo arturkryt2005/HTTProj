@@ -15,12 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiHTTproj", "ApiHTTproj\Ap
 		{D87C622E-738D-47F6-96AA-F1D5EA803849} = {D87C622E-738D-47F6-96AA-F1D5EA803849}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTProj.Database", "HTTProj.Database\HTTProj.Database.csproj", "{D87C622E-738D-47F6-96AA-F1D5EA803849}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTProj.Database", "HTTProj.Database\HTTProj.Database.csproj", "{D87C622E-738D-47F6-96AA-F1D5EA803849}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A5D86E32-5AF2-4C8F-BF56-490A9F24F053} = {A5D86E32-5AF2-4C8F-BF56-490A9F24F053}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTProj.Application", "HTTProj.Application\HTTProj.Application.csproj", "{A5D86E32-5AF2-4C8F-BF56-490A9F24F053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HTTProj.Application", "HTTProj.Application\HTTProj.Application.csproj", "{A5D86E32-5AF2-4C8F-BF56-490A9F24F053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

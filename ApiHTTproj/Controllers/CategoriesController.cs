@@ -6,7 +6,7 @@ namespace ApiHTTProj.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : BaseController<Product>
+    public class CategoriesController : BaseController<Categories>
     {
         public CategoriesController(AppDbContext dbConnectionContext) : base(dbConnectionContext)
         {

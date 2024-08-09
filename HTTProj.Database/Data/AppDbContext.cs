@@ -11,6 +11,6 @@ namespace HTTProj.Data
         }
 
         public DbSet<Categories> Categories { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Product { get; set; }
     }
 }

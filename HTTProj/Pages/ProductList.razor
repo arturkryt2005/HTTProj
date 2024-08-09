@@ -1,0 +1,42 @@
+﻿@page "/products"
+@using HTTProj.Application
+@inject IHttpClientFactory HttpClientFactory
+
+@code {
+    private List<Product>? Product;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = HttpClientFactory.CreateClient("ApiClient");
+        Product = await client.GetFromJsonAsync<List<Product>>("api/product");
+    }
+}
+
+<h3>Product List</h3>
+
+@if (Product == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Product)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Category?.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
