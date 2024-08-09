@@ -12,5 +12,13 @@ namespace HTTProj.Data
 
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Product> Product { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Product)
+                .HasForeignKey(p => p.CategoryId);
+        }
     }
 }

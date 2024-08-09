@@ -12,15 +12,15 @@
     }
 }
 
-<h3>Product List</h3>
+<h3 class="page-title">Product List</h3>
 
 @if (Product == null)
 {
-    <p><em>Loading...</em></p>
+    <p class="loading-message"><em>Loading...</em></p>
 }
 else
 {
-    <table class="table">
+    <table class="product-table">
         <thead>
             <tr>
                 <th>Name</th>
