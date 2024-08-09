@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using HTTProj.Models;
+using HTTProj.Application;
 
 namespace HTTProj.Data
 {
