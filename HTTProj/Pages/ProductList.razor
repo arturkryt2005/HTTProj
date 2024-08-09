@@ -3,33 +3,55 @@
 @inject IHttpClientFactory HttpClientFactory
 
 @code {
-    private List<Product>? Product;
+    private List<Product>? Products;
+    private bool isAscendingPrice = true; // Определяет порядок сортировки
 
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("ApiClient");
-        Product = await client.GetFromJsonAsync<List<Product>>("api/product");
+        Products = await client.GetFromJsonAsync<List<Product>>("api/product");
+    }
+
+    private void SortByPrice()
+    {
+        if (Products != null)
+        {
+            if (isAscendingPrice)
+            {
+                Products = Products.OrderBy(p => p.Price).ToList();
+            }
+            else
+            {
+                Products = Products.OrderByDescending(p => p.Price).ToList();
+            }
+            isAscendingPrice = !isAscendingPrice; // Переключаем порядок сортировки
+        }
     }
 }
 
 <h3 class="page-title">Product List</h3>
 
-@if (Product == null)
+@if (Products == null)
 {
     <p class="loading-message"><em>Loading...</em></p>
 }
 else
 {
+
     <table class="product-table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Price</th>
+                <th>Price
+                    <button class="sort-button" @onclick="SortByPrice">
+                        Sort
+                    </button>
+                </th>
                 <th>Category</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var product in Product)
+            @foreach (var product in Products)
             {
                 <tr>
                     <td>@product.Name</td>
