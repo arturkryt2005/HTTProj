@@ -4,12 +4,18 @@
 
 @code {
     private List<Product>? Products;
-    private bool isAscendingPrice = true; // Определяет порядок сортировки
+    private List<Categories>? Categories;
+    private bool isAscendingPrice = true;
 
     protected override async Task OnInitializedAsync()
     {
         var client = HttpClientFactory.CreateClient("ApiClient");
+
+        // Получаем продукты
         Products = await client.GetFromJsonAsync<List<Product>>("api/product");
+
+        // Получаем категории
+        Categories = await client.GetFromJsonAsync<List<Categories>>("api/categories");
     }
 
     private void SortByPrice()
@@ -24,25 +30,31 @@
             {
                 Products = Products.OrderByDescending(p => p.Price).ToList();
             }
-            isAscendingPrice = !isAscendingPrice; // Переключаем порядок сортировки
+            isAscendingPrice = !isAscendingPrice;
         }
+    }
+
+    private string GetCategoryName(int categoryId)
+    {
+        var category = Categories?.FirstOrDefault(c => c.Id == categoryId);
+        return category?.Name ?? "Unknown";
     }
 }
 
 <h3 class="page-title">Product List</h3>
 
-@if (Products == null)
+@if (Products == null || Categories == null)
 {
     <p class="loading-message"><em>Loading...</em></p>
 }
 else
 {
-
     <table class="product-table">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Price
+                <th>
+                    Price
                     <button class="sort-button" @onclick="SortByPrice">
                         Sort
                     </button>
@@ -56,7 +68,7 @@ else
                 <tr>
                     <td>@product.Name</td>
                     <td>@product.Price</td>
-                    <td>@product.Category?.Name</td>
+                    <td>@GetCategoryName(product.CategoryId)</td>
                 </tr>
             }
         </tbody>

@@ -1,15 +1,22 @@
 ﻿using HTTProj.Application;
 using HTTProj.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-namespace ApiHTTProj.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class CategoriesController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoriesController : BaseController<Categories>
+    private readonly AppDbContext _context;
+
+    public CategoriesController(AppDbContext context)
     {
-        public CategoriesController(AppDbContext dbConnectionContext) : base(dbConnectionContext)
-        {
-        }
+        _context = context;
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Categories>>> GetCategories()
+    {
+        return await _context.Categories.ToListAsync();
     }
 }

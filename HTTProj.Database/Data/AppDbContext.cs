@@ -17,7 +17,7 @@ namespace HTTProj.Data
         {
             modelBuilder.Entity<Product>()
                 .HasOne(p => p.Category)
-                .WithMany(c => c.Product)
+                .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId);
         }
     }
