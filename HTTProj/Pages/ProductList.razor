@@ -11,10 +11,8 @@
     {
         var client = HttpClientFactory.CreateClient("ApiClient");
 
-        // Получаем продукты
         Products = await client.GetFromJsonAsync<List<Product>>("api/product");
 
-        // Получаем категории
         Categories = await client.GetFromJsonAsync<List<Categories>>("api/categories");
     }
 
