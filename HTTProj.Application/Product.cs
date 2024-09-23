@@ -9,5 +9,9 @@ namespace HTTProj.Application
         public decimal Price { get; set; }
         public int CategoryId { get; set; }
         public Categories? Category { get; set; }
+
+
+        public ICollection<Reviews>? Reviews { get; set; } 
+
     }
 }

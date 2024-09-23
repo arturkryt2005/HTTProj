@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HTTProj.Application.Interfaces;
-using HTTProj.Data;
 
 namespace ApiHTTProj.Controllers
 {
